@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <title>Scroll Magic</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+  <body>
+    <section id="header">
+      <h1 id="title">Scroll Magic</h1>
+      <p id="header_text">Select a video or upload your own to get started!</p>
+
+      <button type="button" id="bojji">Bojji</button> 
+      <button type="button" id="corgi">Corgi</button> 
+      <input id="upload-video-file" type='file' name="file" accept="video/mp4, video/mov">
+
+      <input id="text_input" type="text" name="display_text" placeholder="Display text on video">
+
+    </section>
+
+    <div class="intro">
+      <h1 id="video_text">Insert text</h1>
+      <video id="video" src="static/bojji.mp4"></video>
+    </div>
+
+    <section id="footer">
+      <p id="footer_text">You've reached the end of the video!</p>
+      <img id="meme" src="static/meme.jpg" alt="The cooler video scroller">
+    </section>
+
+  </body>
+</html>
+
+<!-- ScrollMagic + GSAP libraries-->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js'></script>
+
+<!-- Javascript for using ScrollMagic + switching video source/text -->
+<script src="./script.js"></script>
+
+</html>
