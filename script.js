@@ -22,7 +22,7 @@ let scene = new ScrollMagic.Scene({
 const textAnim = gsap.fromTo(text, 3, { opacity: 1 }, { opacity: 0 });
 
 let scene2 = new ScrollMagic.Scene({
-  duration: 3000,
+  duration: video.duration * 100 * 3 * 5, // For a 10 second video, this will give a duration of 3000
   triggerElement: intro,
   triggerHook: 0
 })
@@ -44,9 +44,33 @@ setInterval(() => {
 
   video.currentTime = delay;
 }, 40);
-console.log(video);
+//console.log(video);
 
 
+
+// Dynamically update scroll length, based on video duration
+// Wait for video duration to change from NaN to actual duration
+    // https://stackoverflow.com/questions/27550529/how-to-check-length-duration-of-an-uploaded-video-in-javascript
+video.ondurationchange = function() {
+  //alert(this.duration);
+  
+  // Update scroll length by changing its duration
+  scene.duration(video.duration * 100 * 2.5);
+
+  // Update text display duration as well
+  scene2.duration(video.duration * 100 * 3);
+
+  // Optional TODO: Limit scroll length if video duration is too long
+
+  // Refresh scenes
+    // http://scrollmagic.io/docs/ScrollMagic.Scene.html#update
+  scene.update(true);
+  scene2.update(true);
+  
+  // Just to check duration has been successfully updated
+  console.log("NEW VIDEO DURATION");
+  console.log(video.duration);
+};
 
 // Change display text
 document.querySelector('input[name="display_text"]').addEventListener('keyup', function() {
@@ -59,6 +83,11 @@ function vidsource_Bojji() {
   document.getElementById("video").setAttribute('src', 'static/bojji.mp4');
 };
 
+document.getElementById("bojji_long").addEventListener("click", vidsource_long);
+function vidsource_long() {
+  document.getElementById("video").setAttribute('src', 'static/sandcastle.mp4');
+};
+
 document.getElementById("corgi").addEventListener("click", vidsource_Corgi);
 function vidsource_Corgi() {
   document.getElementById("video").setAttribute('src', 'static/corgi.mp4');
@@ -69,5 +98,7 @@ document.getElementById("upload-video-file").addEventListener("change", function
   const video_file = this.files[0];
   const media = URL.createObjectURL(video_file);
   var video = document.getElementById("video");
+  // console.log("OLD VIDEO DURATION");
+  // console.log(video.duration);
   video.src = media;
 });

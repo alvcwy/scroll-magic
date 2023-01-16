@@ -83,6 +83,7 @@ input:focus {
   margin-right: auto;
   width: 35%;
   height: auto;
+  padding-bottom: 15px;
 }
 
 button {
